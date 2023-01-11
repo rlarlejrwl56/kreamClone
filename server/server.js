@@ -33,7 +33,7 @@ app.listen(PORT, () => {
     console.log(`Server run : http://localhost:${PORT}/`)
 });
 
-app.get('/productList', (req, res) => {
+app.get('/justDroppedList', (req, res) => {
     const sqlString =
         'SELECT ' +
         'BRAND_CODE, ' +
@@ -45,6 +45,29 @@ app.get('/productList', (req, res) => {
     db.query(sqlString, (error, rows) => {
         if(error) throw error;
         console.log('Products List is : ', rows);
+        res.send(rows);
+    })
+});
+
+app.get('/getTopShortcutList', (req, res) => {
+    const sqlString =
+        'SELECT ' +
+        'TITLE, ' +
+        'THUMBNAIL_PATH, ' +
+        'DIRECTION_URL ' +
+        'FROM MAIN_TOP_SHORTCUT';
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        console.log('Products List is : ', rows);
+        res.send(rows);
+    })
+});
+
+app.get('/getBrandFocusList', (req, res) => {
+    const sqlString = 'SELECT CODE, NAME_KR AS TITLE, THUMBNAIL_PATH FROM BRAND ORDER BY CODE ASC';
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        console.log('BRAND FOCUS LIST is : ', rows);
         res.send(rows);
     })
 });
