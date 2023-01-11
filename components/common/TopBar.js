@@ -34,7 +34,7 @@ export default function TopBar(){
                         STYLE
                    </li>
                    <li>
-                       SHOP
+                    <Link href='/shop' className="">SHOP</Link>
                    </li>
                    <li>
                        ABOUT
