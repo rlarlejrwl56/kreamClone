@@ -33,7 +33,7 @@ app.listen(PORT, () => {
     console.log(`Server run : http://localhost:${PORT}/`)
 });
 
-app.get('/productList', (req, res) => {
+app.get('/justDroppedList', (req, res) => {
     const sqlString =
         'SELECT ' +
         'BRAND_CODE, ' +
@@ -49,21 +49,25 @@ app.get('/productList', (req, res) => {
     })
 });
 
-app.get('/register', (req, res) => {
-    const {email} = req.query;
-    const sqlString = `SELECT email FROM User WHERE email='${email}'`;
-        db.query(sqlString, (error, rows) => {
+app.get('/getTopShortcutList', (req, res) => {
+    const sqlString =
+        'SELECT ' +
+        'TITLE, ' +
+        'THUMBNAIL_PATH, ' +
+        'DIRECTION_URL ' +
+        'FROM MAIN_TOP_SHORTCUT';
+    db.query(sqlString, (error, rows) => {
         if(error) throw error;
-        console.log('userEmail List is : ', rows);
+        console.log('Products List is : ', rows);
         res.send(rows);
     })
 });
 
-app.post('/signUp', async (req, res)=> {
-    const { email, password, size } = req.body;
-    const sqlString = `INSERT INTO User(id, email, password, size) VALUES('${email}','${email}', '${password}', '${size}')`;
-    db.query(sqlString, (error, rows) =>{
+app.get('/getBrandFocusList', (req, res) => {
+    const sqlString = 'SELECT CODE, NAME_KR AS TITLE, THUMBNAIL_PATH FROM BRAND ORDER BY CODE ASC';
+    db.query(sqlString, (error, rows) => {
         if(error) throw error;
-        console.log('회원가입 성공');
+        console.log('BRAND FOCUS LIST is : ', rows);
+        res.send(rows);
     })
-})
+});

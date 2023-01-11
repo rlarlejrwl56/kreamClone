@@ -2,7 +2,7 @@ import ReisterForm from "../components/register/registerForm";
 
 const register = () => {
     return (
-       <ReisterForm className = 'z-0'/>
+       <ReisterForm/>
     )
 }
 export default register;

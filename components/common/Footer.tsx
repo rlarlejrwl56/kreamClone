@@ -1,8 +1,8 @@
 const Footer = () => {
     return (
-        <div className="footer hidden px-8 py-8 sm:block sm:z-0">
+        <div className="footer hidden px-8 pb-12 sm:block border-t border-t-gray-200">
             <div className="inner">
-                <div className="service_area flex justify-between block flex-row pb-10 border-b border-b-gray-200">
+                <div className="service_area flex justify-between block flex-row py-10 border-b border-b-gray-200">
                     <div className="footer_menu flex flex-row">
                         <div className="menu_box w-40">
                             <strong className="menu_title">이용안내</strong>
@@ -52,14 +52,14 @@ const Footer = () => {
                                 </dt>
                             </dl>
                         </div>
-                        <div className="service_btn_box mt-2">
+                        <div className="service_btn_box mt-3">
                             <a href="#" className="bg-black text-white text-xs p-2">
                                 자주 묻는 질문
                             </a>
                         </div>
                     </div>
                 </div>
-                <div className="corporation_area mt-2">
+                <div className="corporation_area mt-6">
                     <ul className="term_list inline-flex pb-2">
                         <li className="term_item mr-4">
                             <a href="#" className="text-sm">회사소개</a>
@@ -86,8 +86,7 @@ const Footer = () => {
                 </div>
                 <div className="notice_area pt-2">
                     <p className="notice text-xs text-gray-400">
-                        런잇프(주)는 통신판매 중개자로서 통신판매의 당사자가 아니므로 개별 판매자가 등록한 상품정보에 대해서 책임을 지지 않습니다. 단, 거래과정에서 검수하고 보증하는 내용에 대한
-                        책임은 당사에 있습니다.
+                        런잇프(주)는 통신판매 중개자로서 통신판매의 당사자가 아니므로 개별 판매자가 등록한 상품정보에 대해서 책임을 지지 않습니다. 단, 거래과정에서 검수하고 보증하는 내용에 대한 책임은 당사에 있습니다.
                     </p>
                 </div>
             </div>

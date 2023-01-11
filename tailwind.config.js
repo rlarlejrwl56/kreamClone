@@ -7,14 +7,7 @@ module.exports = {
     extend: {
       width : {
         '800' : '800px'
-      },
-      flex : {
-        '0' : '0 0 100%'
-      },
-      borderRadius : {
-        'half' : '50%',
-      },
-
+      }
     },
   },
   plugins: [],
