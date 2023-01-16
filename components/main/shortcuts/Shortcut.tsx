@@ -56,7 +56,7 @@ const Shortcut = ({title, subTitle, theme}) => {
                         <div key={index} className="shortcut_item text-center px-[0.6vw] w-1/5 h-auto mb-2 flex flex-col items-center text-[0.8rem] md:text-sm">
                             <div className="shortcut_item_img_wrap w-[10vw] md:w-full max-h-[100px] h-[10vw] rounded-full md:rounded-2xl flex ">
                                 <a href={shortcut.DIRECTION_URL?shortcut.DIRECTION_URL:'#'}
-                                   className="h-full w-full overflow-clip flex justify-center bg-gray-500 items-center rounded-full md:rounded-xl">
+                                   className="h-full w-full overflow-clip flex justify-center items-center rounded-full md:rounded-xl">
                                     <Image className="h-full w-fit min-w-fit" src={shortcut.THUMBNAIL_PATH}
                                            alt="jordan" quality={100} width={1000} height={1000}/>
                                 </a>
