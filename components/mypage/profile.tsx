@@ -33,6 +33,7 @@ const profile = () => {
                     setUserInfo(res.data);
                 })
         }
+        console.log(userInfo);
     },[]);
 
     return(

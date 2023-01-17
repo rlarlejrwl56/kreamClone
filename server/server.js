@@ -91,20 +91,3 @@ app.post('/signUp', async (req, res)=> {
     })
 });
 
-app.get('/myPage/profile', async (req, res) => {
-    const { userId } = req.query;
-    const sqlString = `SELECT name, email, image,  size, email_receive, message_receive FROM User WHERE id = '${userId}'`;
-    db.query(sqlString, (error, rows) => {
-        if(error) throw error;
-        const emailLength = rows[0].email.split(/@/)[0].length;
-        let secretEmail = '';
-        for(let i = 0; i<emailLength-2; i++){
-            secretEmail += '*';
-        }
-        if(rows[0].image === null){
-            rows[0].image = 'images/mypage/defaultUser.png';
-        }
-        rows[0].email = rows[0].email.substring(0,1) + secretEmail + rows[0].email.substring(emailLength-1, emailLength) + rows[0].email.substring(emailLength);
-        res.send(rows);
-    })
-});
