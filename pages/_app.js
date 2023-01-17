@@ -22,7 +22,7 @@ function MyApp({Component, pageProps: {session, ...pageProps}}) {
         storage.setItem("currentPath", globalThis.location.pathname);
     }
     return (
-        <SessionProvider session={session} refetchInterval={1 * 10} >
+        <SessionProvider session={session} refetchInterval={5 * 60} >
             <QueryClientProvider client={queryClient} >
                 <TopBar/>
                 <Component {...pageProps} />
