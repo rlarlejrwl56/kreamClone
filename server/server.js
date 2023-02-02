@@ -91,3 +91,75 @@ app.post('/signUp', async (req, res)=> {
     })
 });
 
+app.get('/myPage/sellAccount', async (req, res) => {
+    const sqlString = 'SELECT * FROM BANK';
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        res.send(rows);
+        console.log('조회 성공');
+    })
+});
+
+app.get('/myPage/searchAccount', async (req, res) => {
+    const { userId } = req.query;
+    const sqlString = `SELECT * FROM USER_PAY_INFO WHERE USER_ID = '${userId}'`;
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        res.send(rows);
+        console.log('조회 성공');
+    })
+})
+
+app.post('/myPage/updateAccount', async (req, res) => {
+    const { user_id, bank, accountNumber, userName } = req.body.params;
+    const sqlString = `UPDATE  USER_PAY_INFO SET USER_BANK ='${bank}', ACCOUNT_NUMBER = '${accountNumber}', USER_NAME = '${userName}' WHERE USER_ID = '${user_id}'`;
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        res.send('ok');
+    })
+});
+
+app.post('/myPage/insertAccount', async (req, res) => {
+    const { user_id, bank, accountNumber, userName } = req.body.params;
+    const sqlString = `INSERT INTO USER_PAY_INFO(USER_ID, USER_BANK, ACCOUNT_NUMBER, USER_NAME) VALUES ('${user_id}','${bank}','${accountNumber}','${userName}')`;
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        res.send('ok');
+    })
+});
+
+app.post('/myPage/addAddress', async (req, res) => {
+    const { user_id, name, phone, address1, postCode, detail, check } = req.body.params;
+    console.log(check);
+    const sqlString = `INSERT INTO ADDRESS_INFO(USER_ID, NAME, PHONE, ADDRESS1, POSTCODE, ADDRESS2, DEFAULT_YN ) VALUES ('${user_id}','${name}','${phone}','${address1}','${postCode}','${detail}','${check}')`;
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        res.send('ok');
+    })
+});
+
+app.post('/myPage/getAddress', async (req, res) => {
+    const { user_id } = req.body.params;
+    const sqlString = `SELECT * FROM ADDRESS_INFO WHERE USER_ID = '${user_id}'`;
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        console.log(rows);
+        /*for(let i = 0; i<rows.PHONE.length; i++ ){
+            console.log(rows.PHONE.slice())
+        }*/
+            for(let i=0; i<rows.length; i++){
+                let sctN = "*".repeat(rows[i].NAME.length-1);
+                let secretName = rows[i].NAME.slice(0,1) + sctN;
+                let phone = rows[i].PHONE.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+                console.log(phone);
+                if(rows[i].PHONE.length === 11){
+                    rows[i].PHONE = phone.slice(0,4) + phone.slice(4,5) + "***"+ phone.slice(8,9) + "*" + phone.slice(-3);
+                }
+                if(rows[i].PHONE.length === 10) {
+                    rows[i].PHONE = phone.slice(0,4) + phone.slice(4,5) + "**"+ phone.slice(7,8) + "*" + phone.slice(-3);
+                }
+                rows[i].NAME = secretName;
+            }
+        res.send(rows);
+    })
+})
