@@ -1,7 +1,6 @@
-## Next.js + RTK + tailwindCSS + nextAuth + prisma + mysql 로 만든 [KREAM](https://kream.co.kr/)사이트 만들기
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-
-## 시작하기
+## Getting Started
 
 First, run the development server:
 
@@ -11,29 +10,25 @@ npm run dev
 yarn dev
 ```
 
-위 명령어를 실행 후 브라우저에 [http://localhost:3000](http://localhost:3000)로 접속 하면 위 코드 결과를 볼 수 있습니다.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 진행상황
-2022.12.13 SearchBar 레이어 구현
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-2022.12.14 kakao 로그인 구현
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+## Learn More
 
-2022.12.16 kaka로그인 버튼 제작, 네이버 로그인 구현 완료
+To learn more about Next.js, take a look at the following resources:
 
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-2022.12.26 kakao, naver 서버단 로그아웃 구현 완료, 회원가입 신발 사이즈 화면 구현 완료 
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+## Deploy on Vercel
 
-2022.12.27 mypage컴포넌트 구현 완료, 로그인 유무를 통해 로그인, 회원가입, 마이페이지 접근 제한 구현 완료 -> 마이페이지 데이터는 추후 디비로 교체 예정
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-
-2022.01.11 local 사용자 회원가입, 로그인 처리 구현 완료
-
-
-2022.01.17 마이페이지 DB 교체 완료
-
-
-2022.02.20 마이페이지(구매내역 제외 구현 완료)
-
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

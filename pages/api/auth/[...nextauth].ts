@@ -75,14 +75,12 @@ export const options = {
     secret: process.env.SECRET,
     session: {
         strategy: 'jwt',
-        maxAge: 360, // 30 days
+        maxAge: 30 * 24 * 60 * 60, // 30 days
         updateAge: 24 * 60 * 60, // 24 hours
-
     },
     jwt: {
         secret: process.env.SECRET,
         encryption: true,
-        maxAge : 360
     },
         callbacks: {
             async jwt({ token, account, user }) {
