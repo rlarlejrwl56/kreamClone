@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react';
 import axios from 'axios';
+import ChangeUser from "./changeUser";
 import { useEffect, useState } from 'react';
-
 type userType = {
     name : string,
     size : string,
@@ -12,14 +12,18 @@ type userType = {
 }
 
 const profile = () => {
-    const {data : session} = useSession();
+    const {data : session}  = useSession();
+    const provider : any  = useSession().data.provider;
+    const [showEmail, setShowEmail] = useState(false);
+    const [showPwd, setShowPwd] = useState(false);
+    const [showName, setShowName] = useState(false);
+    const [showPhone, setShowPhone] = useState(false);
+    const [showSize, setShowSize] = useState(false);
     const [userInfo, setUserInfo] = useState<userType[] | any>([]);
+
     useEffect(() => {
         if(session) {
-            try {
-            } catch (e) {
-                console.log(e);
-            }
+            console.log(session)
             axios.post('/api/auth/userInfo',
                 {
                     id : session.userId
@@ -33,7 +37,6 @@ const profile = () => {
                     setUserInfo(res.data);
                 })
         }
-        console.log(userInfo);
     },[]);
 
     return(
@@ -65,11 +68,21 @@ const profile = () => {
                     <div className='font-semibold text-[18px] pb-2'>
                         로그인 정보
                     </div>
-                    <div className='border-b-[1px] pb-4 text-[rgba(34,34,34,.5)] text-[14px]'>
-                        <p className='font-[700]'>이메일 주소</p>
-                        <div className='flex items-center text-[16px]'>
-                            <p>{userInfo.email}</p> <button className='ml-auto border-[1px] rounded-lg px-3 py-2 text-[12px] text-[rgba(34,34,34,.8)]'> 변경</button>
-                        </div>
+                    <div className='pb-4 text-[rgba(34,34,34,.5)] text-[14px]'>
+                        <p className={`font-[700] ${showEmail ? 'text-black' : ''}`}>이메일 주소</p>
+                        {showEmail ?
+                            <ChangeUser name='userEmail' setShow={setShowEmail}/>
+                            :
+                            <div className='flex items-center text-[16px] border-b-[1px] pb-3'>
+                                <p>{userInfo.email}</p>
+                                <button
+                                    className='ml-auto border-[1px] rounded-lg px-3 py-2 text-[12px] text-[rgba(34,34,34,.8)]'
+                                    onClick={() => {
+                                        setShowEmail(true)
+                                    }}> 변경
+                                </button>
+                            </div>
+                        }
                     </div>
                     <div className='border-b-[1px] pb-4 pt-4 text-[rgba(34,34,34,.5)] text-[14px]'>
                         <p className='font-[700]'>비밀번호</p>

@@ -1,6 +1,3 @@
-import Link from "next/link";
-import {useDispatch, useSelector} from "react-redux";
-import {filedChange} from "../../store/slices/loginSlice";
 import {useState, useRef, useEffect, useCallback} from 'react';
 import PopUpSize from './popUpSize';
 import {faPlus, faChevronRight} from "@fortawesome/free-solid-svg-icons";
@@ -45,7 +42,6 @@ const registerForm = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         if(isEmail && isPassword && size && isTerms) {
-            console.log(choice);
             try {
                  axios.post('/api/auth/signUp',
                     {
