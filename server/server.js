@@ -246,6 +246,39 @@ app.post('/myPage/editAddress', async (req, res) => {
     })
 });
 
+app.post('/myPage/userInfoChange', async (req, res) => {
+    const {user_id, type, value} = req.body.params;
+    const sqlString = `UPDATE User SET ${type} = '${value}' WHERE id = '${user_id}'`
+    console.log(sqlString);
+    db.query(sqlString, (error, rows) => {
+        if (error) throw error;
+        console.log("@@@");
+        res.send('ok');
+    })
+});
+
+app.post('/myPage/getUserInfo', async (req, res) => {
+    const { user_id } = req.body.params;
+    const sqlString = `SELECT email, password, name , NUMBERS, size,message_receive, email_receive from User A INNER JOIN USER_PAY_INFO B ON A.id = B.USER_ID WHERE A.id = '${user_id}';`
+
+    db.query(sqlString, (error, rows) => {
+        if (error) throw error;
+        const emailLength = rows[0].email.split(/@/)[0].length;
+        let secretEmail = '';
+        for(let i = 0; i<emailLength-2; i++){
+            secretEmail += '*';
+        }
+        if(rows[0].image === null){
+            rows[0].image = '/images/mypage/defaultUser.png';
+        }
+        if(rows[0].name === null){
+            rows[0].name = rows[0].email.split(/@/)[0];
+        }
+        rows[0].email = rows[0].email.substring(0,1) + secretEmail + rows[0].email.substring(emailLength-1, emailLength) + rows[0].email.substring(emailLength);
+        rows[0].password = '●●●●●●●●●';
+        res.send(rows);
+    })
+});
 
 app.post('/myPage/getAddress', async (req, res) => {
     const { user_id } = req.body.params;

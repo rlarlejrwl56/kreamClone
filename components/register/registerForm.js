@@ -169,7 +169,7 @@ const registerForm = () => {
                     </div>
                 </div>
                 {openSize ? (
-                    <PopUpSize openSize={openSize} size={size} setOpenSize={setOpenSize} setSize={setSize} setMessage={setIsMessage} />) : null}
+                    <PopUpSize openSize={openSize} size={size} setOpenSize={setOpenSize} setSize={setSize} setMessage={setIsMessage} name='signUp'/>) : null}
             </div>
         </div>
     )
